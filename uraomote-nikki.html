@@ -1,0 +1,405 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+#uon-root {
+  --bg-page: #E7DFC7;
+  --bg-card: #FBF7EC;
+  --ink: #2E2A22;
+  --ink-soft: #6B6250;
+  --gold: #AD7C2E;
+  --gold-soft: #E4CFA0;
+  --indigo: #3A4368;
+  --indigo-soft: #C7CCDE;
+  --line: #C9BE9E;
+  --stamp: #A6402F;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--ink);
+  background: var(--bg-page);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+#uon-root * { box-sizing: border-box; }
+#uon-root h1, #uon-root h2, #uon-root .uon-serif {
+  font-family: 'Shippori Mincho', serif;
+}
+
+.uon-header { text-align: center; margin-bottom: 6px; }
+.uon-coin-wrap { display: flex; justify-content: center; margin-bottom: 10px; }
+.uon-coin { width: 56px; height: 56px; }
+.uon-coin.uon-spin { animation: uon-coinspin 1.1s ease-out; }
+@keyframes uon-coinspin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(1080deg); }
+}
+#uon-root h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin: 0 0 6px;
+}
+.uon-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.uon-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 22px;
+}
+.uon-panel-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+#uon-textarea {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 3px;
+  padding: 12px;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+#uon-textarea:focus { outline: 2px solid var(--gold-soft); border-color: var(--gold); }
+#uon-textarea::placeholder { color: #A79F8B; }
+
+.uon-btn-row { display: flex; justify-content: flex-end; margin-top: 14px; }
+.uon-btn {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--indigo);
+  border: none;
+  border-radius: 3px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: background .15s ease, transform .1s ease;
+}
+.uon-btn:hover:not(:disabled) { background: #2c3453; }
+.uon-btn:active:not(:disabled) { transform: scale(.98); }
+.uon-btn:disabled { background: #A9A18C; cursor: default; }
+
+.uon-error {
+  font-size: 13px;
+  color: var(--stamp);
+  margin-top: 10px;
+  display: none;
+}
+
+.uon-result { display: none; }
+.uon-result.uon-show { display: block; }
+
+.uon-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  perspective: 900px;
+}
+.uon-side {
+  padding: 16px 14px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.uon-side.uon-omote { background: var(--gold-soft); border-right: 1px solid var(--line); }
+.uon-side.uon-ura { background: var(--indigo-soft); }
+.uon-side-tag {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.uon-side.uon-omote .uon-side-tag { color: var(--gold); }
+.uon-side.uon-ura .uon-side-tag { color: var(--indigo); }
+.uon-side-tag small { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 400; font-size: 11px; opacity: .75; }
+.uon-side-text { color: var(--ink); }
+
+.uon-anim-flip { animation: uon-flipin .5s ease-out; }
+@keyframes uon-flipin {
+  0% { transform: rotateY(90deg); opacity: 0; }
+  100% { transform: rotateY(0deg); opacity: 1; }
+}
+
+.uon-hitokoto-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+.uon-hanko {
+  border: 2px solid var(--stamp);
+  color: var(--stamp);
+  border-radius: 50%;
+  width: 132px;
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 10px;
+  transform: rotate(-3deg);
+}
+
+.uon-history-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.uon-history-empty {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.uon-entry {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 2px;
+  cursor: pointer;
+}
+.uon-entry:last-child { border-bottom: none; }
+.uon-entry-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.uon-entry-date { font-size: 11px; color: var(--ink-soft); white-space: nowrap; }
+.uon-entry-preview { font-size: 14px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.uon-entry-detail {
+  display: none;
+  margin-top: 12px;
+}
+.uon-entry.uon-open .uon-entry-detail { display: block; }
+.uon-entry.uon-open .uon-entry-preview { white-space: normal; }
+
+.uon-loading {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+.uon-loading.uon-show { display: flex; }
+.uon-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: uon-pulse 1s infinite ease-in-out; }
+.uon-dot:nth-child(2) { animation-delay: .15s; }
+.uon-dot:nth-child(3) { animation-delay: .3s; }
+@keyframes uon-pulse { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+</style>
+
+<div id="uon-root">
+  <div class="uon-header">
+    <div class="uon-coin-wrap">
+      <svg id="uon-coin" class="uon-coin" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#AD7C2E" stroke-width="3"/>
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#3A4368" stroke-width="2"/>
+        <text x="50" y="42" text-anchor="middle" font-family="Shippori Mincho, serif" font-size="20" fill="#AD7C2E">表</text>
+        <text x="50" y="68" text-anchor="middle" font-family="Shippori Mincho, serif" font-size="20" fill="#3A4368">裏</text>
+      </svg>
+    </div>
+    <h1>裏表日記</h1>
+    <p class="uon-sub">どんな出来事にも、光の面と影の面がある。<br>今日の一日を、めくって見てみましょう。</p>
+  </div>
+
+  <div class="uon-panel">
+    <p class="uon-panel-label">今日、心に残ったこと</p>
+    <textarea id="uon-textarea" placeholder="例）会議で自分の意見がうまく伝わらなかった"></textarea>
+    <div class="uon-btn-row">
+      <button id="uon-submit" class="uon-btn">めくってみる</button>
+    </div>
+    <div id="uon-loading" class="uon-loading">
+      <span class="uon-dot"></span><span class="uon-dot"></span><span class="uon-dot"></span>
+      考えています…
+    </div>
+    <p id="uon-error" class="uon-error">うまく読み取れませんでした。もう一度めくってみてください。</p>
+  </div>
+
+  <div id="uon-result" class="uon-result">
+    <div id="uon-split" class="uon-split">
+      <div class="uon-side uon-omote">
+        <p class="uon-side-tag">表 <small>そのままの姿</small></p>
+        <p id="uon-omote-text" class="uon-side-text"></p>
+      </div>
+      <div class="uon-side uon-ura">
+        <p class="uon-side-tag">裏 <small>もう一つの見方</small></p>
+        <p id="uon-ura-text" class="uon-side-text"></p>
+      </div>
+    </div>
+    <div class="uon-hitokoto-wrap">
+      <div id="uon-hitokoto" class="uon-hanko"></div>
+    </div>
+  </div>
+
+  <div class="uon-panel">
+    <p class="uon-history-title">めくってきた日々</p>
+    <div id="uon-history"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'diary_entries';
+  let entries = [];
+
+  const $ = (id) => document.getElementById(id);
+  const textarea = $('uon-textarea');
+  const submitBtn = $('uon-submit');
+  const loadingEl = $('uon-loading');
+  const errorEl = $('uon-error');
+  const resultEl = $('uon-result');
+  const historyEl = $('uon-history');
+  const coinEl = $('uon-coin');
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    const days = ['日','月','火','水','木','金','土'];
+    return `${d.getMonth() + 1}/${d.getDate()}(${days[d.getDay()]})`;
+  }
+
+  async function loadEntries() {
+    try {
+      const res = await window.storage.get(STORAGE_KEY, false);
+      entries = res && res.value ? JSON.parse(res.value) : [];
+    } catch (e) {
+      entries = [];
+    }
+    renderHistory();
+  }
+
+  async function saveEntries() {
+    try {
+      await window.storage.set(STORAGE_KEY, JSON.stringify(entries), false);
+    } catch (e) {
+      console.error('保存に失敗しました', e);
+    }
+  }
+
+  function renderHistory() {
+    if (!entries.length) {
+      historyEl.innerHTML = '<p class="uon-history-empty">まだ何も書かれていません。今日のことを、一つ書いてみましょう。</p>';
+      return;
+    }
+    historyEl.innerHTML = '';
+    entries.slice().reverse().forEach((entry) => {
+      const row = document.createElement('div');
+      row.className = 'uon-entry';
+      row.innerHTML = `
+        <div class="uon-entry-row">
+          <span class="uon-entry-preview">${escapeHtml(entry.text)}</span>
+          <span class="uon-entry-date">${formatDate(entry.date)}</span>
+        </div>
+        <div class="uon-entry-detail">
+          <div class="uon-split" style="margin-top:2px;">
+            <div class="uon-side uon-omote">
+              <p class="uon-side-tag">表 <small>そのままの姿</small></p>
+              <p class="uon-side-text">${escapeHtml(entry.omote)}</p>
+            </div>
+            <div class="uon-side uon-ura">
+              <p class="uon-side-tag">裏 <small>もう一つの見方</small></p>
+              <p class="uon-side-text">${escapeHtml(entry.ura)}</p>
+            </div>
+          </div>
+        </div>
+      `;
+      row.addEventListener('click', () => row.classList.toggle('uon-open'));
+      historyEl.appendChild(row);
+    });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  async function analyze(text) {
+    const system = `あなたは日記を書いた人にそっと寄り添うカウンセラーです。渡された今日の出来事について、次の3つを日本語で生成してください。
+出力は必ずJSONのみ。前置き、説明、マークダウンのコードブロックは一切含めないこと。
+{"omote": "出来事をそのまま受け止めた表の見方(30〜50文字)", "ura": "同じ出来事の裏側にある、まだ気づいていない意味や、そこから得られる良い面(出来事がネガティブな場合)、または浮かれすぎず地に足をつけるための視点(出来事がポジティブな場合)(30〜50文字)", "hitokoto": "出来事全体を一言でポジティブに言い換えた言葉(15文字以内)"}
+説教くさくならず、温かく、押しつけがましくないトーンで書いてください。`;
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: system,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = (data.content || [])
+      .map((block) => (block.type === 'text' ? block.text : ''))
+      .join('')
+      .replace(/```json|```/g, '')
+      .trim();
+    return JSON.parse(raw);
+  }
+
+  function showResult(parsed) {
+    $('uon-omote-text').textContent = parsed.omote;
+    $('uon-ura-text').textContent = parsed.ura;
+    $('uon-hitokoto').textContent = parsed.hitokoto;
+    resultEl.classList.add('uon-show');
+    const split = $('uon-split');
+    split.classList.remove('uon-anim-flip');
+    void split.offsetWidth;
+    split.classList.add('uon-anim-flip');
+    coinEl.classList.remove('uon-spin');
+    void coinEl.offsetWidth;
+    coinEl.classList.add('uon-spin');
+  }
+
+  submitBtn.addEventListener('click', async () => {
+    const text = textarea.value.trim();
+    if (!text) return;
+
+    errorEl.style.display = 'none';
+    loadingEl.classList.add('uon-show');
+    submitBtn.disabled = true;
+
+    try {
+      const parsed = await analyze(text);
+      showResult(parsed);
+
+      entries.push({
+        date: new Date().toISOString(),
+        text,
+        omote: parsed.omote,
+        ura: parsed.ura,
+        hitokoto: parsed.hitokoto
+      });
+      await saveEntries();
+      renderHistory();
+      textarea.value = '';
+    } catch (e) {
+      console.error(e);
+      errorEl.style.display = 'block';
+    } finally {
+      loadingEl.classList.remove('uon-show');
+      submitBtn.disabled = false;
+    }
+  });
+
+  loadEntries();
+})();
+</script>
